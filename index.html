@@ -10,6 +10,7 @@
             --primary-gold: #e2c08d;
             --soft-blue: #eef2f7;
             --deep-gray: #2c3e50;
+            --accent-glow: rgba(226, 192, 141, 0.4);
         }
 
         /* 讓捲動更平滑 */
@@ -36,7 +37,7 @@
             justify-content: center;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            flex-wrap: wrap; /* 增加彈性，防止按鈕過多時重疊 */
+            flex-wrap: wrap;
         }
 
         .nav-btn {
@@ -46,10 +47,10 @@
             padding: 10px 15px;
             margin: 5px 8px;
             border: 2px solid var(--primary-gold);
-            border-radius: 8px; /* 方格質感 */
+            border-radius: 8px;
             transition: 0.3s;
             background: white;
-            font-size: 1.2em;
+            font-size: 1.2em; /* 依照您的設定 */
         }
 
         .nav-btn:hover {
@@ -77,14 +78,14 @@
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 6em;
+            font-size: 6em; /* 依照您的設定 */
             letter-spacing: 15px;
             margin: 0;
             animation: fadeInDown 1.5s ease forwards;
         }
 
         header .subtitle {
-            font-size: 1.8em;
+            font-size: 1.8em; /* 依照您的設定 */
             margin-top: 20px;
             letter-spacing: 4px;
             opacity: 0;
@@ -92,7 +93,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px; /* 稍微放寬，減少左右留白感 */
             margin: 40px auto 100px;
             padding: 0 20px;
             position: relative;
@@ -101,209 +102,4 @@
 
         .content-card {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 40px;
-            margin-bottom: 50px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
-        }
-
-        h2 {
-            font-family: 'Noto Serif TC', serif;
-            color: var(--primary-gold);
-            font-size: 2.2em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        /* --- 故事左右佈局 --- */
-        .story-layout {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .story-text-column { flex: 1.2; }
-
-        .story-image-column {
-            flex: 0.8;
-            width: 100%;
-            height: 50vh;
-            max-height: 500px;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slideshow-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            z-index: 1;
-        }
-
-        .slideshow-img.active {
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 20px 0;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .quote-box {
-            text-align: center;
-            padding: 40px;
-            background: var(--soft-blue);
-            border-radius: 25px;
-        }
-
-        .btn-bless {
-            background: var(--primary-gold);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px;
-            color: #bdc3c7;
-            background: #fff;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body id="home">
-
-<nav>
-    <a href="#home" class="nav-btn">首頁</a>
-    <a href="#daily-grace" class="nav-btn">每日恩典</a>
-    <a href="#music" class="nav-btn">音樂欣賞</a>
-    <a href="https://www.expecthim.com/online-bible" target="_blank" class="nav-btn">線上聖經</a>
-    <a href="https://www.nycu.edu.tw/" target="_blank" class="nav-btn">交大網站</a>
-</nav>
-
-<header>
-    <h1>微光計畫</h1>
-    <p class="subtitle">讓每一份純真，在數位世界如光閃耀</p>
-</header>
-
-<div class="container">
-    <div class="content-card">
-        <h2>💡 計畫初衷：尋找那道光</h2>
-        <p>路思義教堂的設計核心在於「光」。建築師透過雙曲面的縫隙，讓陽光精準地灑落在祈禱者的身上。<strong>「微光計畫」</strong>便是要在浩瀚的行動網路中，為人們創造這道溫暖的微光。</p>
-    </div>
-
-    <div class="content-card">
-        <h2>🕯️ 關於純真與未來：一個承諾的故事</h2>
-        <div class="story-layout">
-            <div class="story-text-column">
-                <p>
-                    這些照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
-                    看到小熊也默默地在長椅上見證著成長與承諾，我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。</strong>
-                    那場典禮象徵著一個階段的完成，也象徵著對未來的期許。將這份「純真、善良與美好」的精神，分享給每一位在網路世界中尋找共鳴的靈魂。
-                </p>
-            </div>
-            <div class="story-image-column">
-                <div class="slideshow-container">
-                    <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部">
-                    <img src="images/bear.jpg" class="slideshow-img" alt="畢業小熊">
-                    <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card" id="music">
-        <h2>🎵 音樂欣賞：奇異恩典</h2>
-        <p>聆聽海莉·薇思特娜（Hayley Westenra）清透的歌聲，感受那份如微光般滲透心靈的平靜與希望。</p>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/TZ25P0aRikw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="content-card" id="daily-grace" style="text-align:center;">
-        <h2>✨ 每日恩典：領取你的祝福</h2>
-        <div class="quote-box">
-            <p id="quote-text" style="font-size: 1.4em; font-style: italic;">「喜樂的心乃是良藥，憂傷的靈使骨枯乾。」</p>
-            <button class="btn-bless" onclick="getBlessing()">領取今日微光</button>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
-        <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
-            <strong>TOOL:</strong> Gemini / YouTube API / VS Code<br>
-            <strong>PROMPT:</strong> "Add a navigation button for an Online Bible website. Ensure the nav bar remains clean with square buttons. Keep the left-text right-image story layout stable."
-        </div>
-    </div>
-</div>
-
-<footer>
-    <p>© 2026 數位分享獎學金申請作品 <br> 願這份美好，成為您數位生活中的微光</p>
-</footer>
-
-<script>
-    function getBlessing() {
-        const blessings = [
-            "你的存在是這世界的一道微光。",
-            "善良是一份贈與世界的禮物。",
-            "願你在數位波流中擁有一顆安靜的心。",
-            "凡事包容，凡事相信，凡事盼望，凡事忍耐。",
-            "在壓力中保持純真，是這個時代最美好的創新。"
-        ];
-        document.getElementById('quote-text').innerText = blessings[Math.floor(Math.random() * blessings.length)];
-    }
-
-    const slides = document.querySelectorAll(".slideshow-img");
-    let slideIndex = 0;
-    setInterval(showSlides, 5000);
-
-    function showSlides() {
-        slides[slideIndex].classList.remove("active");
-        slideIndex = (slideIndex + 1) % slides.length;
-        slides[slideIndex].classList.add("active");
-    }
-</script>
-</body>
-</html>
+            backdrop-filter: blur(1
