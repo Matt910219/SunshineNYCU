@@ -4,132 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微光計畫 - The Glimmer</title>
-    <!-- 引入美觀的字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-gold: #e2c08d;
             --soft-blue: #eef2f7;
             --deep-gray: #2c3e50;
-            --accent-glow: rgba(226, 192, 141, 0.3);
         }
 
+        /* 動態漸層背景 */
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            line-height: 1.8;
-            color: #444;
             margin: 0;
-            /* 柔和的漸層背景，模擬清晨的光線 */
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            background-attachment: fixed;
+            background: linear-gradient(-45deg, #fdfbfb, #ebedee, #f0f4f8, #fff1eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #444;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         header {
-            padding: 100px 20px 60px;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            background: transparent;
         }
 
         h1 {
             font-family: 'Noto Serif TC', serif;
+            font-size: 4em;
+            letter-spacing: 8px;
             color: var(--deep-gray);
-            font-size: 3em;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background: var(--primary-gold);
-            box-shadow: 0 0 10px var(--accent-glow);
+            margin: 0;
+            animation: fadeInDown 1.5s ease;
         }
 
         .subtitle {
-            font-weight: 300;
+            font-size: 1.2em;
             color: #7f8c8d;
-            font-size: 1.1em;
-            margin-top: 20px;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            animation: fadeInUp 2s ease;
         }
 
         .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
         }
 
-        /* 毛玻璃質感的卡片設計 */
         .content-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            margin-bottom: 40px;
-            transition: transform 0.3s ease;
-        }
-
-        .content-card:hover {
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
         h2 {
             font-family: 'Noto Serif TC', serif;
             color: var(--primary-gold);
-            font-size: 1.8em;
-            border-left: 4px solid var(--primary-gold);
-            padding-left: 15px;
-            margin-bottom: 25px;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        p {
-            font-size: 1.05em;
-            color: #555;
-            text-align: justify;
+        /* 互動金句按鈕 */
+        .quote-box {
+            text-align: center;
+            padding: 30px;
+            background: var(--soft-blue);
+            border-radius: 20px;
+            margin-top: 20px;
         }
 
-        /* AI 區塊改為優雅的點綴 */
-        .ai-section {
-            background: rgba(226, 192, 141, 0.1);
-            border: 1px dashed var(--primary-gold);
-            padding: 25px;
-            border-radius: 15px;
-            font-size: 0.95em;
-        }
-
-        .ai-tag {
+        .btn-bless {
             background: var(--primary-gold);
             color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-right: 5px;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(226, 192, 141, 0.4);
         }
 
+        .btn-bless:hover {
+            transform: scale(1.05);
+            background: #d4ae7b;
+        }
+
+        /* 腳註 */
         footer {
             text-align: center;
-            padding: 60px;
-            color: #bdc3c7;
+            padding: 50px;
+            color: #95a5a6;
             font-size: 0.9em;
-            letter-spacing: 1px;
         }
 
-        /* 簡單的淡入動畫 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        /* 動畫定義 */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .container > * {
-            animation: fadeIn 1s ease forwards;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -137,22 +127,51 @@
 
 <header>
     <h1>微光計畫</h1>
-    <p class="subtitle">The Glimmer: 在數位世界遇見溫暖與福音的喜樂</p>
+    <p class="subtitle">The Glimmer: 每一個點擊，都是溫暖的傳遞</p>
 </header>
 
 <div class="container">
     <div class="content-card">
-        <h2>💡 創作理念</h2>
-        <p>
-            在這個快速變動、資訊碎片化的數位時代，我們往往在網路的喧囂中迷失了方向。
-            <strong>「微光計畫」</strong>的初衷，是希望透過行動網路傳遞一份純真、善良與美好。
-            我們深信，網路不應只是冰冷的代碼，而能成為分享基督福音、傳遞溫暖愛意的出口，
-            讓每個疲憊的心靈在點擊進入這個角落時，都能感受到平靜與希望。
-        </p>
+        <h2>💡 核心精神</h2>
+        <p>「微光計畫」是一個致力於在行動網路中擴散正向能量的數位實驗。我們相信，科技的發展不應與人文溫度脫節。透過這項作品，我們分享創新、純真、善良與美好，讓福音的精神在數位世界中如微光般閃耀。</p>
     </div>
 
     <div class="content-card">
-        <h2>🎨 數位作品：每日恩典</h2>
-        <p>
-            「喜樂的心乃是良藥。」—— 我們將日常中的美好瞬間轉化為數位藝術。
-            透過精心挑選的色彩與構圖，我們試圖捕捉生活中細微的恩典。
+        <h2>✨ 每日恩典：領取你的祝福</h2>
+        <div class="quote-box">
+            <p id="quote-text" style="font-size: 1.3em; color: var(--deep-gray); min-height: 1.5em;">點擊下方按鈕，接收今日的溫暖話語</p>
+            <button class="btn-bless" onclick="getBlessing()">獲取祝福</button>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
+        <p>本作品之架構與美學邏輯由創作者與 AI 共同構築，展現科技與人文的完美融合：</p>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em; color: #666;">
+            <strong>TOOL:</strong> Gemini / ChatGPT / Midjourney<br>
+            <strong>PROMPT:</strong> "Minimalist web design for a spiritual project, using soft gradient backgrounds, elegant serif typography, and glassmorphism cards. Incorporate themes of hope and divine light."
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 數位分享獎學金作品案 <br> 願這份美好，成為您數位生活中的微光</p>
+</footer>
+
+<script>
+    const blessings = [
+        "喜樂的心乃是良藥，憂傷的靈使骨枯乾。",
+        "在壓力中保持純真，是這個時代最美好的創新。",
+        "不要為明天憂慮，因為明天自有明天的憂慮。",
+        "你的存在，本身就是這世界的一道微光。",
+        "善良不是一種選擇，而是一份贈與世界的禮物。"
+    ];
+
+    function getBlessing() {
+        const randomIndex = Math.floor(Math.random() * blessings.length);
+        document.getElementById('quote-text').innerText = blessings[randomIndex];
+    }
+</script>
+
+</body>
+</html>
