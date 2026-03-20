@@ -36,19 +36,20 @@
             justify-content: center;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            flex-wrap: wrap; /* 增加彈性，防止按鈕過多時重疊 */
         }
 
         .nav-btn {
             text-decoration: none;
             color: var(--deep-gray);
             font-weight: 500;
-            padding: 10px 20px;
-            margin: 0 10px;
+            padding: 10px 15px;
+            margin: 5px 8px;
             border: 2px solid var(--primary-gold);
-            border-radius: 8px;
+            border-radius: 8px; /* 方格質感 */
             transition: 0.3s;
             background: white;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         .nav-btn:hover {
@@ -82,6 +83,14 @@
             animation: fadeInDown 1.5s ease forwards;
         }
 
+        header .subtitle {
+            font-size: 1.4em;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 0.5s;
+        }
+
         .container {
             max-width: 900px;
             margin: 40px auto 100px;
@@ -107,35 +116,30 @@
             text-align: center;
         }
 
-        /* --- 關鍵升級：首頁故事左右佈局 --- */
+        /* --- 故事左右佈局 --- */
         .story-layout {
             display: flex;
-            align-items: center; /* 垂直置中 */
+            align-items: center;
             justify-content: space-between;
-            gap: 40px; /* 文字與圖片的間距 */
+            gap: 40px;
         }
 
-        .story-text-column {
-            flex: 1.2; /* 文字佔比稍微多一點 */
-        }
+        .story-text-column { flex: 1.2; }
 
         .story-image-column {
-            flex: 0.8; /* 圖片佔比稍微少一點 */
+            flex: 0.8;
             width: 100%;
-            height: 50vh; /* 設定一個最大高度，佔視窗的 50%，保證佈局穩定 */
-            max-height: 500px; /* 同時設定最大物理高度，防止過大 */
+            height: 50vh;
+            max-height: 500px;
             overflow: hidden;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* 輪播樣式 */
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 100%; /* 撐滿父容器 */
-            border-radius: 20px;
-            overflow: hidden;
+            height: 100%;
         }
 
         .slideshow-img {
@@ -143,11 +147,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* 撐滿父容器 */
-            
-            /* 關鍵：圖片在穩定高度內使用 contain，保留比例，顯示整張圖，不裁切 */
+            height: 100%;
             object-fit: contain; 
-            
             opacity: 0;
             transition: opacity 1s ease-in-out;
             z-index: 1;
@@ -158,10 +159,9 @@
             z-index: 2;
         }
 
-        /* 影片嵌入容器 */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 比例 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 20px;
@@ -207,6 +207,10 @@
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body id="home">
@@ -215,6 +219,7 @@
     <a href="#home" class="nav-btn">首頁</a>
     <a href="#daily-grace" class="nav-btn">每日恩典</a>
     <a href="#music" class="nav-btn">音樂欣賞</a>
+    <a href="https://www.expecthim.com/online-bible" target="_blank" class="nav-btn">線上聖經</a>
     <a href="https://www.nycu.edu.tw/" target="_blank" class="nav-btn">交大網站</a>
 </nav>
 
@@ -269,7 +274,7 @@
         <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
             <strong>TOOL:</strong> Gemini / YouTube API / VS Code<br>
-            <strong>PROMPT:</strong> "Modify the story section to have text on the left and a slideshow on the right. Fix the image height to prevent layout shift and use object-fit: contain to show the full ratio."
+            <strong>PROMPT:</strong> "Add a navigation button for an Online Bible website. Ensure the nav bar remains clean with square buttons. Keep the left-text right-image story layout stable."
         </div>
     </div>
 </div>
@@ -280,28 +285,23 @@
 
 <script>
     function getBlessing() {
-        const blessings = ["你的存在是這世界的一道微光。", "善良是一份贈與世界的禮物。", "願你在數位波流中擁有一顆安靜的心。"];
+        const blessings = [
+            "你的存在是這世界的一道微光。",
+            "善良是一份贈與世界的禮物。",
+            "願你在數位波流中擁有一顆安靜的心。",
+            "凡事包容，凡事相信，凡事盼望，凡事忍耐。",
+            "在壓力中保持純真，是這個時代最美好的創新。"
+        ];
         document.getElementById('quote-text').innerText = blessings[Math.floor(Math.random() * blessings.length)];
     }
 
-    /* --- 優化後的輪播腳本：不再測量高度 --- */
     const slides = document.querySelectorAll(".slideshow-img");
     let slideIndex = 0;
-    
-    // 初始化輪播，設定 5 秒自動切換
     setInterval(showSlides, 5000);
 
     function showSlides() {
-        // 移除舊的 active
         slides[slideIndex].classList.remove("active");
-
-        // 遞增索引
-        slideIndex++;
-        if (slideIndex >= slides.length) {
-            slideIndex = 0;
-        }
-
-        // 加入新的 active (觸發淡入)
+        slideIndex = (slideIndex + 1) % slides.length;
         slides[slideIndex].classList.add("active");
     }
 </script>
