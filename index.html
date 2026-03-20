@@ -102,4 +102,252 @@
 
         .content-card {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(1
+            backdrop-filter: blur(10px);
+            padding: 60px 80px; /* 增加左右內距，讓內容更紮實 */
+            border-radius: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        h2 {
+            font-family: 'Noto Serif TC', serif;
+            color: var(--primary-gold);
+            font-size: 2.5em; /* 稍微放大標題 */
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* --- 佈局通用樣式 --- */
+        .flex-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .text-column { flex: 1.2; }
+        .side-column { flex: 0.8; }
+
+        /* --- 計畫初衷美編：光暈效果 --- */
+        .intention-card {
+            background: radial-gradient(circle at 10% 10%, rgba(226, 192, 141, 0.15) 0%, rgba(255, 255, 255, 0.95) 50%);
+        }
+
+        .intention-icon {
+            font-size: 5em;
+            text-align: center;
+            color: var(--primary-gold);
+            filter: drop-shadow(0 0 20px var(--accent-glow));
+        }
+
+        /* --- 輪播區塊樣式 --- */
+        .story-image-column {
+            width: 100%;
+            height: 50vh;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slideshow-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .slideshow-img.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* 影片與祝福樣式 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .quote-box {
+            text-align: center;
+            padding: 50px;
+            background: var(--soft-blue);
+            border-radius: 30px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .btn-bless {
+            background: var(--primary-gold);
+            color: white;
+            border: none;
+            padding: 15px 45px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        .btn-bless:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px;
+            color: #bdc3c7;
+            background: #fff;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body id="home">
+
+<nav>
+    <a href="#home" class="nav-btn">首頁</a>
+    <a href="#daily-grace" class="nav-btn">每日恩典</a>
+    <a href="#music" class="nav-btn">音樂欣賞</a>
+    <a href="https://www.expecthim.com/online-bible" target="_blank" class="nav-btn">線上聖經</a>
+    <a href="https://www.nycu.edu.tw/" target="_blank" class="nav-btn">交大網站</a>
+</nav>
+
+<header>
+    <h1>微光計畫</h1>
+    <p class="subtitle">讓每一份純真，在數位世界如光閃耀</p>
+</header>
+
+<div class="container">
+    <!-- 第一區塊：計畫初衷 (左右排版優化) -->
+    <div class="content-card intention-card">
+        <div class="flex-layout">
+            <div class="side-column">
+                <div class="intention-icon">💡</div>
+            </div>
+            <div class="text-column">
+                <h2>計畫初衷：尋找那道光</h2>
+                <p>路思義教堂的建築靈魂，在於其對「光」的極致追求。貝聿銘先生透過大膽的雙曲面薄殼結構，在屋脊中央留下一道玻璃天窗，讓自然光能神聖地灑落在祈禱者的肩膀。這正如我們的數位時代——科技雖然如宏偉建築般冷峻，但只要我們有心分享，純真與善良的「福音」便能滲透進來。</p>
+                <p><strong>「微光計畫」</strong>的誕生，便是要在浩瀚且紛擾的行動網路中，透過數位創作留下一道細小的縫隙，讓愛與希望的溫暖微光能觸及每一顆疲憊的心靈。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二區塊：故事 (維持您的左右佈局) -->
+    <div class="content-card">
+        <h2>🕯️ 關於純真與未來：一個承諾的故事</h2>
+        <div class="story-layout">
+            <div class="story-text-column">
+                <p>
+                    這些照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
+                    看到小熊也默默地在長椅上見證著成長與承諾，我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。</strong>
+                </p>
+                <p>
+                    那場典禮象徵著一個階段的完成，也象徵著對未來的期許。我希望透過這個網頁，將這份「純真、善良與美好」的精神，透過科技分享給每一位在網路世界中尋找共鳴的靈魂。
+                </p>
+            </div>
+            <div class="story-image-column">
+                <div class="slideshow-container">
+                    <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部">
+                    <img src="images/bear.jpg" class="slideshow-img" alt="畢業小熊">
+                    <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音樂與影片 -->
+    <div class="content-card" id="music">
+        <h2>🎵 音樂欣賞：奇異恩典</h2>
+        <p>聆聽海莉·薇思特娜（Hayley Westenra）空靈的歌聲，感受那份如微光般滲透心靈的平靜。這份恩典，是我們在這個數位時代最想分享的美好。</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/TZ25P0aRikw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- 每日恩典 -->
+    <div class="content-card" id="daily-grace" style="text-align:center;">
+        <h2>✨ 每日恩典：領取你的祝福</h2>
+        <div class="quote-box">
+            <p id="quote-text" style="font-size: 1.6em; font-style: italic; color: var(--deep-gray);">「喜樂的心乃是良藥，憂傷的靈使骨枯乾。」</p>
+            <button class="btn-bless" onclick="getBlessing()">領取今日微光</button>
+        </div>
+    </div>
+
+    <!-- 技術紀錄 -->
+    <div class="content-card">
+        <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
+        <div style="background: #f9f9f9; padding: 30px; border-radius: 10px; font-family: monospace; font-size: 1em; border-left: 5px solid var(--primary-gold);">
+            <strong>TOOL:</strong> Gemini / VS Code / CSS Flexbox<br>
+            <strong>PROMPT:</strong> "Expand the project intention text. Use a split layout for the intention section to reduce white space. Apply a subtle radial light glow to the background. Enhance card padding for a more solid feel. Maintain 6em title and 1.2em nav buttons as per user's preference."
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 數位分享獎學金申請作品 <br> 願這份美好，成為您數位生活中的微光</p>
+</footer>
+
+<script>
+    function getBlessing() {
+        const blessings = [
+            "你的存在是這世界的一道微光。",
+            "善良是一份贈與世界的禮物。",
+            "願你在數位波流中擁有一顆安靜的心。",
+            "凡事包容，凡事相信，凡事盼望，凡事忍耐。",
+            "在壓力中保持純真，是這個時代最美好的創新。"
+        ];
+        const quoteElement = document.getElementById('quote-text');
+        quoteElement.style.opacity = 0;
+        setTimeout(() => {
+            quoteElement.innerText = blessings[Math.floor(Math.random() * blessings.length)];
+            quoteElement.style.opacity = 1;
+        }, 300);
+    }
+
+    const slides = document.querySelectorAll(".slideshow-img");
+    let slideIndex = 0;
+    setInterval(showSlides, 5000);
+
+    function showSlides() {
+        slides[slideIndex].classList.remove("active");
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add("active");
+    }
+</script>
+</body>
+</html>
