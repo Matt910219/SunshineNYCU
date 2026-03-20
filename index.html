@@ -18,101 +18,132 @@
             background: #fdfbfb;
             color: #444;
             line-height: 1.8;
+            overflow-x: hidden; /* 防止滾動條 */
         }
 
-        /* 1. 調整標題區域，讓教堂主體顯現 */
+        /* 頂部英雄區：滿版教堂 */
         header {
-            height: 75vh; /* 稍微增加高度，從 70 變成 90 */
+            height: 100vh;
             background: linear-gradient(rgba(44, 62, 80, 0.3), rgba(44, 62, 80, 0.3)), url('images/luce_ext.jpg');
             background-size: cover;
-            /* 關鍵改動：將 center 改成 bottom，這樣圖片會由下往上對齊，露出教堂 */
-            background-position: bottom center; 
+            background-position: bottom center;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white; /* 標題文字改為白色，適配深色背景圖 */
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 給 header 底部一點陰影，增加立體感 */
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
         }
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 4.5em;
-            letter-spacing: 12px;
+            font-size: 5em;
+            letter-spacing: 15px;
             margin: 0;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            animation: fadeInDown 1.5s ease;
+            animation: fadeInDown 1.5s ease forwards;
         }
 
         header .subtitle {
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin-top: 20px;
-            letter-spacing: 3px;
-            opacity: 0.9;
+            letter-spacing: 4px;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards 0.5s;
         }
 
         .container {
-        max-width: 900px;
-        /* 將負邊距縮小，從 -60px 改成 -20px 或是 20px (正值) */
-        margin: 30px auto 100px; 
-        padding: 0 20px;
-        position: relative;
-        z-index: 10;
+            max-width: 900px;
+            margin: 40px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
+
         .content-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 30px;
-            margin-bottom: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            padding: 60px;
+            border-radius: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
         }
 
         h2 {
             font-family: 'Noto Serif TC', serif;
             color: var(--primary-gold);
-            font-size: 2em;
-            margin-bottom: 25px;
+            font-size: 2.2em;
+            margin-bottom: 30px;
             text-align: center;
+            letter-spacing: 2px;
         }
 
-        /* 故事區圖片排版 */
-        .story-img {
+        /* --- 輪播區塊 CSS --- */
+        .slideshow-container {
+            position: relative;
             width: 100%;
+            height: 400px; /* 設定輪播區域高度 */
             border-radius: 20px;
-            margin: 20px 0;
+            overflow: hidden;
+            margin: 30px 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .slideshow-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0; /* 預設隱藏 */
+            transition: opacity 1s ease-in-out; /* 酷炫淡入轉場 */
+        }
+
+        /* 顯示目前圖片 */
+        .slideshow-img.active {
+            opacity: 1;
+            z-index: 1;
         }
 
         .quote-box {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             background: var(--soft-blue);
-            border-radius: 20px;
+            border-radius: 25px;
             font-style: italic;
+            margin: 30px 0;
         }
 
         .btn-bless {
             background: var(--primary-gold);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 15px 40px;
             border-radius: 50px;
-            font-size: 1em;
+            font-size: 1.1em;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(226, 192, 141, 0.4);
+        }
+        .btn-bless:hover {
+            transform: scale(1.05);
+            background: #d4ae7b;
         }
 
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 60px;
             color: #bdc3c7;
             background: #fff;
         }
 
+        /* 動畫 */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -127,11 +158,10 @@
 
 <header>
     <h1>微光計畫</h1>
-    <p class="subtitle">The Glimmer: 讓每一份純真，在數位世界如光閃耀</p>
+    <p class="subtitle">让每一份纯真，在數位世界如光閃耀</p>
 </header>
 
 <div class="container">
-    <!-- 第一區塊：核心精神 -->
     <div class="content-card">
         <h2>💡 計畫初衷：尋找那道光</h2>
         <p>
@@ -141,19 +171,23 @@
         </p>
     </div>
 
-    <!-- 第二區塊：故事與照片 -->
     <div class="content-card">
-        <h2>🕯️ 一個關於成長與承諾的故事</h2>
-        <img src="images/luce_int.jpg" alt="教堂內部的溫暖瞬間" class="story-img">
+        <h2>🕯️ 關於純真與未來：一個承諾的故事</h2>
+        
+        <div class="slideshow-container">
+            <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部的溫暖瞬間">
+            <img src="images/bear.jpg" class="slideshow-img" alt="畢業與祝福">
+            <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
+        </div>
+
         <p>
-            這張照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
-            我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感的容器。</strong>
+            這些照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
+            看到小熊也默默地在長椅上見證著成長與承諾，我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。</strong>
             那場典禮象徵著一個階段的完成，也象徵著對未來的期許。我們希望透過這個網頁，
             將這份「純真、善良與美好」的精神，分享給每一位在網路世界中尋找共鳴的靈魂。
         </p>
     </div>
 
-    <!-- 第三區塊：互動 -->
     <div class="content-card" style="text-align:center;">
         <h2>✨ 每日恩典：領取你的祝福</h2>
         <div class="quote-box">
@@ -162,13 +196,12 @@
         </div>
     </div>
 
-    <!-- 第四區塊：AI 紀錄 -->
     <div class="content-card">
         <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
         <p>本計畫之視覺排版與敘述結構由創作者與 AI 共同構築，展現科技對人文價值的轉譯：</p>
         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
             <strong>TOOL:</strong> Gemini / Midjourney / VS Code<br>
-            <strong>PROMPT:</strong> "Minimalist web architecture inspired by Luce Chapel, focusing on divine light, hope, and human connection. Using soft gold and blue tones."
+            <strong>PROMPT:</strong> "Minimalist web architecture inspired by Luce Chapel, focusing on divine light, hope, and human connection. Incorporating organic slideshow logic and warm gold tones."
         </div>
     </div>
 </div>
@@ -178,6 +211,7 @@
 </footer>
 
 <script>
+    /* 祝福金句腳本 */
     const blessings = [
         "你的存在，本身就是這世界的一道微光。",
         "在壓力中保持純真，是這個時代最美好的創新。",
@@ -190,6 +224,29 @@
         const randomIndex = Math.floor(Math.random() * blessings.length);
         document.getElementById('quote-text').innerText = blessings[randomIndex];
     }
+
+    /* --- 輪播腳本 --- */
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slideshow-img");
+    
+    function showSlides() {
+        // 移除所有圖片的 active 類別
+        slides.forEach(slide => {
+            slide.classList.remove("active");
+        });
+
+        // 遞增索引，並循環
+        slideIndex++;
+        if (slideIndex >= slides.length) {
+            slideIndex = 0;
+        }
+
+        // 為當前圖片加入 active 類別（觸發淡入轉場）
+        slides[slideIndex].classList.add("active");
+    }
+
+    // 每 5 秒（5000 毫秒）切換一次
+    setInterval(showSlides, 5000);
 </script>
 
 </body>
