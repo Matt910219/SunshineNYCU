@@ -12,79 +12,82 @@
             --deep-gray: #2c3e50;
         }
 
-        /* 動態漸層背景 */
         body {
             font-family: 'Noto Sans TC', sans-serif;
             margin: 0;
-            background: linear-gradient(-45deg, #fdfbfb, #ebedee, #f0f4f8, #fff1eb);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #fdfbfb;
             color: #444;
+            line-height: 1.8;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* 頂部英雄區：放置外觀照 */
         header {
-            height: 60vh;
+            height: 70vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.4), rgba(44, 62, 80, 0.4)), url('images/luce_ext.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            color: white;
         }
 
-        h1 {
+        header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 4em;
-            letter-spacing: 8px;
-            color: var(--deep-gray);
+            font-size: 4.5em;
+            letter-spacing: 12px;
             margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             animation: fadeInDown 1.5s ease;
         }
 
-        .subtitle {
-            font-size: 1.2em;
-            color: #7f8c8d;
-            margin-top: 15px;
-            letter-spacing: 2px;
-            animation: fadeInUp 2s ease;
+        header .subtitle {
+            font-size: 1.3em;
+            margin-top: 20px;
+            letter-spacing: 3px;
+            opacity: 0.9;
         }
 
         .container {
             max-width: 900px;
-            margin: -50px auto 100px;
+            margin: -60px auto 100px;
             padding: 0 20px;
         }
 
         .content-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 50px;
             border-radius: 30px;
             margin-bottom: 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
         }
 
         h2 {
             font-family: 'Noto Serif TC', serif;
             color: var(--primary-gold);
             font-size: 2em;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
-        /* 互動金句按鈕 */
+        /* 故事區圖片排版 */
+        .story-img {
+            width: 100%;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
         .quote-box {
             text-align: center;
             padding: 30px;
             background: var(--soft-blue);
             border-radius: 20px;
-            margin-top: 20px;
+            font-style: italic;
         }
 
         .btn-bless {
@@ -96,23 +99,16 @@
             font-size: 1em;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(226, 192, 141, 0.4);
+            margin-top: 20px;
         }
 
-        .btn-bless:hover {
-            transform: scale(1.05);
-            background: #d4ae7b;
-        }
-
-        /* 腳註 */
         footer {
             text-align: center;
             padding: 50px;
-            color: #95a5a6;
-            font-size: 0.9em;
+            color: #bdc3c7;
+            background: #fff;
         }
 
-        /* 動畫定義 */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -127,44 +123,63 @@
 
 <header>
     <h1>微光計畫</h1>
-    <p class="subtitle">The Glimmer: 每一個點擊，都是溫暖的傳遞</p>
+    <p class="subtitle">The Glimmer: 讓每一份純真，在數位世界如光閃耀</p>
 </header>
 
 <div class="container">
+    <!-- 第一區塊：核心精神 -->
     <div class="content-card">
-        <h2>💡 核心精神</h2>
-        <p>「微光計畫」是一個致力於在行動網路中擴散正向能量的數位實驗。我們相信，科技的發展不應與人文溫度脫節。透過這項作品，我們分享創新、純真、善良與美好，讓福音的精神在數位世界中如微光般閃耀。</p>
+        <h2>💡 計畫初衷：尋找那道光</h2>
+        <p>
+            路思義教堂的設計核心在於「光」。建築師透過雙曲面的縫隙，讓陽光精準地灑落在祈禱者的身上。
+            這正如我們的數位時代——雖然科技如宏偉的建築般冰冷，但只要我們有心留下一道縫隙，愛與希望的「福音」便能滲透進來。
+            <strong>「微光計畫」</strong>便是要在浩瀚的行動網路中，為人們尋找並創造這道溫暖的微光。
+        </p>
     </div>
 
+    <!-- 第二區塊：故事與照片 -->
     <div class="content-card">
+        <h2>🕯️ 一個關於成長與承諾的故事</h2>
+        <img src="images/luce_int.jpg" alt="教堂內部的溫暖瞬間" class="story-img">
+        <p>
+            這張照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
+            我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感的容器。</strong>
+            那場典禮象徵著一個階段的完成，也象徵著對未來的期許。我們希望透過這個網頁，
+            將這份「純真、善良與美好」的精神，分享給每一位在網路世界中尋找共鳴的靈魂。
+        </p>
+    </div>
+
+    <!-- 第三區塊：互動 -->
+    <div class="content-card" style="text-align:center;">
         <h2>✨ 每日恩典：領取你的祝福</h2>
         <div class="quote-box">
-            <p id="quote-text" style="font-size: 1.3em; color: var(--deep-gray); min-height: 1.5em;">點擊下方按鈕，接收今日的溫暖話語</p>
-            <button class="btn-bless" onclick="getBlessing()">獲取祝福</button>
+            <p id="quote-text">「喜樂的心乃是良藥，憂傷的靈使骨枯乾。」</p>
+            <button class="btn-bless" onclick="getBlessing()">領取今日微光</button>
         </div>
     </div>
 
+    <!-- 第四區塊：AI 紀錄 -->
     <div class="content-card">
         <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
-        <p>本作品之架構與美學邏輯由創作者與 AI 共同構築，展現科技與人文的完美融合：</p>
-        <div style="background: #fff; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em; color: #666;">
-            <strong>TOOL:</strong> Gemini / ChatGPT / Midjourney<br>
-            <strong>PROMPT:</strong> "Minimalist web design for a spiritual project, using soft gradient backgrounds, elegant serif typography, and glassmorphism cards. Incorporate themes of hope and divine light."
+        <p>本計畫之視覺排版與敘述結構由創作者與 AI 共同構築，展現科技對人文價值的轉譯：</p>
+        <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
+            <strong>TOOL:</strong> Gemini / Midjourney / VS Code<br>
+            <strong>PROMPT:</strong> "Minimalist web architecture inspired by Luce Chapel, focusing on divine light, hope, and human connection. Using soft gold and blue tones."
         </div>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 數位分享獎學金作品案 <br> 願這份美好，成為您數位生活中的微光</p>
+    <p>© 2026 數位分享獎學金申請作品 <br> 願這份美好，成為您數位生活中的微光</p>
 </footer>
 
 <script>
     const blessings = [
-        "喜樂的心乃是良藥，憂傷的靈使骨枯乾。",
-        "在壓力中保持純真，是這個時代最美好的創新。",
-        "不要為明天憂慮，因為明天自有明天的憂慮。",
         "你的存在，本身就是這世界的一道微光。",
-        "善良不是一種選擇，而是一份贈與世界的禮物。"
+        "在壓力中保持純真，是這個時代最美好的創新。",
+        "善良不是一種選擇，而是一份贈與世界的禮物。",
+        "不要為明天憂慮，因為明天自有明天的憂慮。",
+        "願你在數位波流中，擁有一顆安靜且喜樂的心。"
     ];
 
     function getBlessing() {
