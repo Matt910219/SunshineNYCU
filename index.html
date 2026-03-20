@@ -22,19 +22,20 @@
 
         /* 1. 調整標題區域，讓教堂主體顯現 */
         header {
-            height: 90vh; /* 稍微增加高度，從 70 變成 90 */
+            height: 75vh; /* 稍微增加高度，從 70 變成 90 */
             background: linear-gradient(rgba(44, 62, 80, 0.3), rgba(44, 62, 80, 0.3)), url('images/luce_ext.jpg');
             background-size: cover;
             /* 關鍵改動：將 center 改成 bottom，這樣圖片會由下往上對齊，露出教堂 */
             background-position: bottom center; 
-            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-          }
+            color: white; /* 標題文字改為白色，適配深色背景圖 */
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 給 header 底部一點陰影，增加立體感 */
+        }
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
@@ -55,7 +56,7 @@
         .container {
         max-width: 900px;
         /* 將負邊距縮小，從 -60px 改成 -20px 或是 20px (正值) */
-        margin: -20px auto 100px; 
+        margin: 30px auto 100px; 
         padding: 0 20px;
         position: relative;
         z-index: 10;
