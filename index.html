@@ -20,12 +20,13 @@
             line-height: 1.8;
         }
 
-        /* 頂部英雄區：放置外觀照 */
+        /* 1. 調整標題區域，讓教堂主體顯現 */
         header {
-            height: 70vh;
-            background: linear-gradient(rgba(44, 62, 80, 0.4), rgba(44, 62, 80, 0.4)), url('images/luce_ext.jpg');
+            height: 90vh; /* 稍微增加高度，從 70 變成 90 */
+            background: linear-gradient(rgba(44, 62, 80, 0.3), rgba(44, 62, 80, 0.3)), url('images/luce_ext.jpg');
             background-size: cover;
-            background-position: center;
+            /* 關鍵改動：將 center 改成 bottom，這樣圖片會由下往上對齊，露出教堂 */
+            background-position: bottom center; 
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
@@ -33,7 +34,7 @@
             align-items: center;
             text-align: center;
             color: white;
-        }
+          }
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
@@ -52,11 +53,13 @@
         }
 
         .container {
-            max-width: 900px;
-            margin: -60px auto 100px;
-            padding: 0 20px;
+        max-width: 900px;
+        /* 將負邊距縮小，從 -60px 改成 -20px 或是 20px (正值) */
+        margin: -20px auto 100px; 
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
         }
-
         .content-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
