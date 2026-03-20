@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* --- 導航列樣式 (方塊導航鈕) --- */
+        /* --- 導航列樣式 --- */
         nav {
             position: fixed;
             top: 0;
@@ -45,7 +45,7 @@
             padding: 10px 20px;
             margin: 0 10px;
             border: 2px solid var(--primary-gold);
-            border-radius: 8px; /* 方中帶圓的質感 */
+            border-radius: 8px;
             transition: 0.3s;
             background: white;
             font-size: 0.95em;
@@ -107,6 +107,57 @@
             text-align: center;
         }
 
+        /* --- 關鍵升級：首頁故事左右佈局 --- */
+        .story-layout {
+            display: flex;
+            align-items: center; /* 垂直置中 */
+            justify-content: space-between;
+            gap: 40px; /* 文字與圖片的間距 */
+        }
+
+        .story-text-column {
+            flex: 1.2; /* 文字佔比稍微多一點 */
+        }
+
+        .story-image-column {
+            flex: 0.8; /* 圖片佔比稍微少一點 */
+            width: 100%;
+            height: 50vh; /* 設定一個最大高度，佔視窗的 50%，保證佈局穩定 */
+            max-height: 500px; /* 同時設定最大物理高度，防止過大 */
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 輪播樣式 */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%; /* 撐滿父容器 */
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .slideshow-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* 撐滿父容器 */
+            
+            /* 關鍵：圖片在穩定高度內使用 contain，保留比例，顯示整張圖，不裁切 */
+            object-fit: contain; 
+            
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .slideshow-img.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
         /* 影片嵌入容器 */
         .video-container {
             position: relative;
@@ -125,33 +176,6 @@
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        /* 輪播樣式 */
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            border-radius: 20px;
-            overflow: hidden;
-            margin: 30px 0;
-            transition: height 0.5s ease-in-out; 
-        }
-
-        .slideshow-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: auto; 
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            z-index: 1;
-        }
-
-        .slideshow-img.active {
-            opacity: 1;
-            z-index: 2;
         }
 
         .quote-box {
@@ -207,12 +231,22 @@
 
     <div class="content-card">
         <h2>🕯️ 關於純真與未來：一個承諾的故事</h2>
-        <div class="slideshow-container" id="slideshow-container">
-            <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部">
-            <img src="images/bear.jpg" class="slideshow-img" alt="畢業小熊">
-            <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
+        <div class="story-layout">
+            <div class="story-text-column">
+                <p>
+                    這些照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
+                    看到小熊也默默地在長椅上見證著成長與承諾，我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。</strong>
+                    那場典禮象徵著一個階段的完成，也象徵著對未來的期許。將這份「純真、善良與美好」的精神，分享給每一位在網路世界中尋找共鳴的靈魂。
+                </p>
+            </div>
+            <div class="story-image-column">
+                <div class="slideshow-container">
+                    <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部">
+                    <img src="images/bear.jpg" class="slideshow-img" alt="畢業小熊">
+                    <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
+                </div>
+            </div>
         </div>
-        <p>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。將這份精神分享給每一位在網路中尋找共鳴的靈魂。</p>
     </div>
 
     <div class="content-card" id="music">
@@ -235,7 +269,7 @@
         <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
             <strong>TOOL:</strong> Gemini / YouTube API / VS Code<br>
-            <strong>PROMPT:</strong> "Add a navigation bar with square buttons and embed a YouTube video for Amazing Grace within a responsive card structure."
+            <strong>PROMPT:</strong> "Modify the story section to have text on the left and a slideshow on the right. Fix the image height to prevent layout shift and use object-fit: contain to show the full ratio."
         </div>
     </div>
 </div>
@@ -250,22 +284,24 @@
         document.getElementById('quote-text').innerText = blessings[Math.floor(Math.random() * blessings.length)];
     }
 
-    const container = document.getElementById('slideshow-container');
+    /* --- 優化後的輪播腳本：不再測量高度 --- */
     const slides = document.querySelectorAll(".slideshow-img");
     let slideIndex = 0;
     
-    function updateContainerHeight(index) {
-        if (slides[index].complete) { container.style.height = slides[index].offsetHeight + 'px'; }
-        else { slides[index].onload = () => { container.style.height = slides[index].offsetHeight + 'px'; }; }
-    }
-
-    window.onload = () => { updateContainerHeight(0); setInterval(showSlides, 5000); };
-    window.onresize = () => updateContainerHeight(slideIndex);
+    // 初始化輪播，設定 5 秒自動切換
+    setInterval(showSlides, 5000);
 
     function showSlides() {
+        // 移除舊的 active
         slides[slideIndex].classList.remove("active");
-        slideIndex = (slideIndex + 1) % slides.length;
-        updateContainerHeight(slideIndex);
+
+        // 遞增索引
+        slideIndex++;
+        if (slideIndex >= slides.length) {
+            slideIndex = 0;
+        }
+
+        // 加入新的 active (觸發淡入)
         slides[slideIndex].classList.add("active");
     }
 </script>
