@@ -12,6 +12,9 @@
             --deep-gray: #2c3e50;
         }
 
+        /* 讓捲動更平滑 */
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Noto Sans TC', sans-serif;
             margin: 0;
@@ -21,7 +24,41 @@
             overflow-x: hidden;
         }
 
-        /* 頂部英雄區：滿版教堂 */
+        /* --- 導航列樣式 (方塊導航鈕) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            color: var(--deep-gray);
+            font-weight: 500;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px; /* 方中帶圓的質感 */
+            transition: 0.3s;
+            background: white;
+            font-size: 0.95em;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-gold);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(226, 192, 141, 0.4);
+        }
+
+        /* 英雄區 (Hero Section) */
         header {
             height: 100vh;
             background: linear-gradient(rgba(44, 62, 80, 0.3), rgba(44, 62, 80, 0.3)), url('images/luce_ext.jpg');
@@ -45,14 +82,6 @@
             animation: fadeInDown 1.5s ease forwards;
         }
 
-        header .subtitle {
-            font-size: 1.4em;
-            margin-top: 20px;
-            letter-spacing: 4px;
-            opacity: 0;
-            animation: fadeInUp 2s ease forwards 0.5s;
-        }
-
         .container {
             max-width: 900px;
             margin: 40px auto 100px;
@@ -68,10 +97,6 @@
             border-radius: 40px;
             margin-bottom: 50px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease;
-        }
-        .content-card:hover {
-            transform: translateY(-5px);
         }
 
         h2 {
@@ -80,18 +105,36 @@
             font-size: 2.2em;
             margin-bottom: 30px;
             text-align: center;
-            letter-spacing: 2px;
         }
 
-        /* --- 輪播區塊 CSS --- */
+        /* 影片嵌入容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 輪播樣式 */
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 0; /* JS 動態設定 */
+            height: 0;
             border-radius: 20px;
             overflow: hidden;
             margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: height 0.5s ease-in-out; 
         }
 
@@ -111,20 +154,11 @@
             z-index: 2;
         }
 
-        /* 祝福區塊專用樣式 */
         .quote-box {
             text-align: center;
             padding: 40px;
             background: var(--soft-blue);
             border-radius: 25px;
-            margin: 20px 0;
-        }
-
-        #quote-text {
-            font-size: 1.4em;
-            color: var(--deep-gray);
-            font-style: italic;
-            min-height: 1.5em;
         }
 
         .btn-bless {
@@ -135,13 +169,7 @@
             border-radius: 50px;
             font-size: 1.1em;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(226, 192, 141, 0.4);
             margin-top: 20px;
-        }
-        .btn-bless:hover {
-            transform: scale(1.05);
-            background: #d4ae7b;
         }
 
         footer {
@@ -151,17 +179,20 @@
             background: #fff;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body id="home">
+
+<nav>
+    <a href="#home" class="nav-btn">首頁</a>
+    <a href="#daily-grace" class="nav-btn">每日恩典</a>
+    <a href="#music" class="nav-btn">音樂欣賞</a>
+    <a href="https://www.nycu.edu.tw/" target="_blank" class="nav-btn">交大網站</a>
+</nav>
 
 <header>
     <h1>微光計畫</h1>
@@ -169,43 +200,42 @@
 </header>
 
 <div class="container">
-    <!-- 第一區塊：核心精神 -->
     <div class="content-card">
         <h2>💡 計畫初衷：尋找那道光</h2>
-        <p>路思義教堂的設計核心在於「光」。建築師透過雙曲面的縫隙，讓陽光精準地灑落在祈禱者的身上。這正如我們的數位時代——雖然科技如宏偉的建築般冰冷，但只要我們有心留下一道縫隙，愛與希望的「福音」便能滲透進來。<strong>「微光計畫」</strong>便是要在浩瀚的行動網路中，為人們尋找並創造這道溫暖的微光。</p>
+        <p>路思義教堂的設計核心在於「光」。建築師透過雙曲面的縫隙，讓陽光精準地灑落在祈禱者的身上。<strong>「微光計畫」</strong>便是要在浩瀚的行動網路中，為人們創造這道溫暖的微光。</p>
     </div>
 
-    <!-- 第二區塊：自適應輪播故事 -->
     <div class="content-card">
         <h2>🕯️ 關於純真與未來：一個承諾的故事</h2>
         <div class="slideshow-container" id="slideshow-container">
-            <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部的溫暖瞬間">
-            <img src="images/bear.jpg" class="slideshow-img" alt="畢業與祝福">
+            <img src="images/luce_int.jpg" class="slideshow-img active" alt="教堂內部">
+            <img src="images/bear.jpg" class="slideshow-img" alt="畢業小熊">
             <img src="images/luce_2.jpg" class="slideshow-img" alt="光影教堂">
         </div>
-        <p>
-            這些照片紀錄了我參加重要夥伴畢業典禮的一刻。當我們坐在路思義教堂內，仰望著格狀天花板透下的微弱光線，
-            看到小熊也默默地在長椅上見證著成長與承諾，我突然意識到：<strong>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。</strong>
-            那場典禮象徵著一個階段的完成，也象徵著對未來的期許。將這份「純真、善良與美好」的精神，分享給每一位在網路世界中尋找共鳴的靈魂。
-        </p>
+        <p>最美的數位創作，不應只是炫技，而應是能承載情感與祝福的容器。將這份精神分享給每一位在網路中尋找共鳴的靈魂。</p>
     </div>
 
-    <!-- 第三區塊：每日恩典 (已恢復) -->
-    <div class="content-card" style="text-align:center;">
+    <div class="content-card" id="music">
+        <h2>🎵 音樂欣賞：奇異恩典</h2>
+        <p>聆聽海莉·薇思特娜（Hayley Westenra）清透的歌聲，感受那份如微光般滲透心靈的平靜與希望。</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/TZ25P0aRikw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="content-card" id="daily-grace" style="text-align:center;">
         <h2>✨ 每日恩典：領取你的祝福</h2>
         <div class="quote-box">
-            <p id="quote-text">「喜樂的心乃是良藥，憂傷的靈使骨枯乾。」</p>
+            <p id="quote-text" style="font-size: 1.4em; font-style: italic;">「喜樂的心乃是良藥，憂傷的靈使骨枯乾。」</p>
             <button class="btn-bless" onclick="getBlessing()">領取今日微光</button>
         </div>
     </div>
 
-    <!-- 第四區塊：AI 紀錄 -->
     <div class="content-card">
         <h2>🤖 數位共生紀錄 (AI Prompt)</h2>
-        <p>本計畫之視覺排版與敘述結構由創作者與 AI 共同構築，展現科技對人文價值的轉譯：</p>
         <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.9em;">
-            <strong>TOOL:</strong> Gemini / Midjourney / VS Code<br>
-            <strong>PROMPT:</strong> "Minimalist web architecture inspired by Luce Chapel, focusing on divine light, hope, and human connection. Using adaptive-height slider and gold tones."
+            <strong>TOOL:</strong> Gemini / YouTube API / VS Code<br>
+            <strong>PROMPT:</strong> "Add a navigation bar with square buttons and embed a YouTube video for Amazing Grace within a responsive card structure."
         </div>
     </div>
 </div>
@@ -215,66 +245,29 @@
 </footer>
 
 <script>
-    /* --- 1. 祝福金句腳本 --- */
-    const blessings = [
-        "你的存在，本身就是這世界的一道微光。",
-        "在壓力中保持純真，是這個時代最美好的創新。",
-        "善良不是一種選擇，而是一份贈與世界的禮物。",
-        "不要為明天憂慮，因為明天自有明天的憂慮。",
-        "願你在數位波流中，擁有一顆安靜且喜樂的心。",
-        "凡事包容，凡事相信，凡事盼望，凡事忍耐。"
-    ];
-
     function getBlessing() {
-        const quoteElement = document.getElementById('quote-text');
-        // 加入簡單的淡出淡入效果
-        quoteElement.style.opacity = 0;
-        setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * blessings.length);
-            quoteElement.innerText = blessings[randomIndex];
-            quoteElement.style.opacity = 1;
-        }, 300);
+        const blessings = ["你的存在是這世界的一道微光。", "善良是一份贈與世界的禮物。", "願你在數位波流中擁有一顆安靜的心。"];
+        document.getElementById('quote-text').innerText = blessings[Math.floor(Math.random() * blessings.length)];
     }
 
-    /* --- 2. 自適應輪播腳本 --- */
     const container = document.getElementById('slideshow-container');
     const slides = document.querySelectorAll(".slideshow-img");
     let slideIndex = 0;
     
     function updateContainerHeight(index) {
-        const activeSlide = slides[index];
-        if (activeSlide.complete) {
-            container.style.height = activeSlide.offsetHeight + 'px';
-        } else {
-            activeSlide.addEventListener('load', function() {
-                container.style.height = activeSlide.offsetHeight + 'px';
-            }, { once: true });
-        }
+        if (slides[index].complete) { container.style.height = slides[index].offsetHeight + 'px'; }
+        else { slides[index].onload = () => { container.style.height = slides[index].offsetHeight + 'px'; }; }
     }
 
-    // 初始化第一張高度
-    window.onload = () => updateContainerHeight(0);
-    window.addEventListener('resize', () => updateContainerHeight(slideIndex));
+    window.onload = () => { updateContainerHeight(0); setInterval(showSlides, 5000); };
+    window.onresize = () => updateContainerHeight(slideIndex);
 
     function showSlides() {
         slides[slideIndex].classList.remove("active");
         slideIndex = (slideIndex + 1) % slides.length;
         updateContainerHeight(slideIndex);
-        slides[slideIndex].add("active"); // 修正：應為 classList.add
+        slides[slideIndex].classList.add("active");
     }
-    
-    // 修正上面一個小手誤，重新定義 showSlides 確保穩定
-    function startSlideshow() {
-        setInterval(() => {
-            slides[slideIndex].classList.remove("active");
-            slideIndex = (slideIndex + 1) % slides.length;
-            updateContainerHeight(slideIndex);
-            slides[slideIndex].classList.add("active");
-        }, 5000);
-    }
-
-    startSlideshow();
 </script>
-
 </body>
 </html>
