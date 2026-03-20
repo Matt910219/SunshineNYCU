@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微光計畫 - 傳遞福音與美好的角落</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; line-height: 1.6; color: #333; margin: 0; background-color: #f9fbfd; }
+        header { background: #fff; padding: 60px 20px; text-align: center; border-bottom: 1px solid #eee; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #2c3e50; font-size: 2.5em; margin-bottom: 10px; }
+        .subtitle { color: #7f8c8d; font-size: 1.2em; margin-bottom: 30px; }
+        .content-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .ai-section { background: #f0f7ff; border-left: 5px solid #3498db; padding: 20px; font-size: 0.9em; }
+        footer { text-align: center; padding: 40px; color: #95a5a6; font-size: 0.8em; }
+        img { max-width: 100%; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>微光：在數位世界遇見溫暖</h1>
+    <p class="subtitle">分享創新、純真、與福音的喜樂</p>
+</header>
+
+<div class="container">
+    <!-- 主題內容 -->
+    <div class="content-card">
+        <h2>💡 創作理念</h2>
+        <p>在這個快速變動的數位時代，我們希望能透過網路傳遞一份「純真」與「善良」。本作品旨在分享基督福音中的愛與希望，讓每個點擊進入網頁的人，都能感受到一絲平靜與溫暖。</p>
+    </div>
+
+    <!-- 數位作品展示 (可以放圖片或文字) -->
+    <div class="content-card">
+        <h2>🎨 數位作品：每日恩典</h2>
+        <p>「喜樂的心乃是良藥。」—— 這是我們想透過數位圖像傳達的核心價值。</p>
+        <!-- 如果你有作品圖，請把圖片放在 images 資料夾並修改下方 src -->
+        <!-- <img src="images/artwork.jpg" alt="作品展示"> -->
+        <p>（在此處描述你的數位創作，例如一段影音、一組攝影或是互動程式碼的意義）</p>
+    </div>
+
+    <!-- 關鍵：獎學金要求的 AI 聲明區塊 -->
+    <div class="content-card ai-section">
+        <h3>🤖 AI 工具與 Prompt 紀錄</h3>
+        <p>本作品之部分視覺元素與文案輔助使用 AI 工具生成，紀錄如下：</p>
+        <ul>
+            <li><strong>使用工具：</strong> Gemini / Midjourney</li>
+            <li><strong>核心 Prompt：</strong> "Create a warm, peaceful landscape with soft sunlight, representing hope and divine grace, minimalist style."</li>
+            <li><strong>應用部分：</strong> 網頁意象設計與文案潤飾。</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 數位分享獎學金申請作品 - 願這份美好與你同在</p>
+</footer>
+
+</body>
+</html>
